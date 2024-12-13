@@ -55,6 +55,11 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
     const { title, description, price, image } = req.body;
     try {
+        if (!mangoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).json({
+                message: "Invalid Product id"
+            })
+        }
         if (!title || !description || !price || !image) {
             return res.status(400).json({
                 message: "All fields are required"
@@ -77,6 +82,11 @@ router.put("/:id", async (req, res) => {
 
 //delete product by id
 router.delete("/:id", async (req, res) => {
+    if (!mangoose.Types.ObjectId.isValid(req.params.id)) {
+        return res.status(400).json({
+            message: "Invalid Product id"
+        })
+    }
     try {
         const product = await Product.findByIdAndDelete(req.params.id);
         if (!product) {
