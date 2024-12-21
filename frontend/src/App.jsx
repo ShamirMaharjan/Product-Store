@@ -3,6 +3,9 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Create from './pages/Create'
 import NavBar from './components/NavBar'
+import Edit from './pages/Edit'
+import Delete from './pages/Delete'
+import View from './pages/view'
 
 
 const App = () => {
@@ -29,8 +32,10 @@ const App = () => {
       <NavBar />
       <Routes>
         < Route path="/" element={<Home />} />
-        < Route path="/" element={<Create />} />
-
+        < Route path="/create" element={<Create />} />
+        < Route path="/edit/:id" element={<Edit />} />
+        < Route path="/delete/:id" element={<Delete />} />
+        < Route path="/view/:id" element={<View />} />
       </Routes>
     </div>
   )

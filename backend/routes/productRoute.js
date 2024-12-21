@@ -1,6 +1,7 @@
 import express from "express";
 import { Product } from "../models/productModel.js";
 const router = express.Router();
+import mongoose from "mongoose";
 
 
 //create prodcut
@@ -55,7 +56,7 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
     const { title, description, price, image } = req.body;
     try {
-        if (!mangoose.Types.ObjectId.isValid(req.params.id)) {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
             return res.status(400).json({
                 message: "Invalid Product id"
             })
@@ -82,7 +83,7 @@ router.put("/:id", async (req, res) => {
 
 //delete product by id
 router.delete("/:id", async (req, res) => {
-    if (!mangoose.Types.ObjectId.isValid(req.params.id)) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         return res.status(400).json({
             message: "Invalid Product id"
         })
